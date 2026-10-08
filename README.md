@@ -8,7 +8,7 @@ O projeto tem como objetivo desenvolver uma solução de **monitoramento da infr
 
 Este repositório tem como objetivo desenvolver a aplicação **Java em modo console** responsável por coletar e apresentar informações dos componentes do computador.
 
-Para realizar essa coleta, a aplicação utiliza a biblioteca **Looca**, responsável por obter informações relacionadas ao hardware e aos recursos do sistema. Os dados obtidos pela aplicação também são **conectados ao banco de dados**, permitindo seu armazenamento e utilização no projeto.
+Para realizar essa coleta, a aplicação utiliza a biblioteca **OSHI**, responsável por obter informações relacionadas ao hardware e aos recursos do sistema. Os dados obtidos pela aplicação também são **conectados ao banco de dados**, permitindo seu armazenamento e utilização no projeto.
 
 Dessa forma, este repositório representa a parte desenvolvida em **Java** dentro do projeto acadêmico SPOT, aplicando os conceitos estudados na disciplina de **Linguagens Digitais Multiplataformas**.
 

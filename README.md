@@ -6,7 +6,7 @@ O projeto tem como objetivo desenvolver uma solução de **monitoramento da infr
 
 ## Objetivo
 
-Este repositório tem como objetivo desenvolver a aplicação **Java em modo console** responsável por coletar e apresentar informações dos componentes do computador.
+Este repositório tem como objetivo desenvolver a aplicação **Java em modo console (Client)** responsável por coletar informações dos componentes do computador.
 
 Para realizar essa coleta, a aplicação utiliza a biblioteca **OSHI**, responsável por obter informações relacionadas ao hardware e aos recursos do sistema. Os dados obtidos pela aplicação também são **conectados ao banco de dados**, permitindo seu armazenamento e utilização no projeto.
 
@@ -14,25 +14,43 @@ Dessa forma, este repositório representa a parte desenvolvida em **Java** dentr
 
 ## Java
 
-A aplicação é desenvolvida utilizando **Java** e possui inicialmente uma aplicação em **modo console (Client)**.
+A aplicação é desenvolvida utilizando **Java** e possui uma aplicação em **modo console (Client)**.
 
 Entre suas principais funcionalidades estão:
 
-*  Listagem de informações dos componentes do computador;
-*  Utilização da biblioteca **Looca** para obtenção das informações de hardware;
-*  Conexão com o banco de dados;
-*  Preparação dos dados para utilização no sistema de monitoramento.
+- Listagem e coleta de informações dos componentes do computador;
+- Utilização da biblioteca **OSHI** para obtenção das informações de hardware e monitoramento de rede;
+- Conexão com o banco de dados;
+- Armazenamento dos dados coletados para utilização no sistema de monitoramento.
 
-## Biblioteca Looca
+## Biblioteca OSHI
 
-A biblioteca **Looca** é utilizada para obter informações sobre os componentes e recursos do computador diretamente pela aplicação Java.
+A biblioteca **OSHI** é utilizada para obter informações sobre os componentes e recursos do computador diretamente pela aplicação Java.
 
-Por meio dela, é possível acessar informações que serão utilizadas no monitoramento da infraestrutura computacional do projeto SPOT.
+Por meio dela, é possível acessar informações que serão utilizadas no monitoramento da infraestrutura computacional do projeto SPOT, incluindo informações relacionadas à rede.
 
 ## Banco de Dados
 
 A aplicação Java possui conexão com o **banco de dados**, permitindo que as informações coletadas pelo sistema sejam armazenadas e posteriormente utilizadas pelas outras partes do projeto.
 
+## Como acessar o arquivo JAR
+
+O projeto disponibiliza o arquivo compilado da aplicação Java para facilitar o acesso dos integrantes do grupo.
+
+Para acessá-lo:
+
+1. Baixe o arquivo ZIP do repositório no GitHub.
+2. Extraia os arquivos para uma pasta no computador.
+3. Acesse a pasta `dist/`.
+4. Localize o arquivo `java-spot-rede.jar`.
+
+Para executar o arquivo, abra o terminal na pasta `dist/` e utilize o comando:
+
+```bash
+java -jar java-spot-rede.jar
+```
+
+**Observação:** a execução depende das bibliotecas necessárias e da configuração de conexão com o banco de dados MySQL.
 
 ## Projeto acadêmico
 

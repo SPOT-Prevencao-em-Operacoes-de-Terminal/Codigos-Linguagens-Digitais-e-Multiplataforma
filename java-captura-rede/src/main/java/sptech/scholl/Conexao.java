@@ -6,12 +6,10 @@ import javax.sql.DataSource;
 public class Conexao {
     private DataSource dataSource;
     public Conexao() {
-
         BasicDataSource basicDataSource = new BasicDataSource();
-
         basicDataSource.setUrl("jdbc:mysql://localhost:3306/spot_bd");// o host e o banco!
-        basicDataSource.setUsername("user_Spot");
-        basicDataSource.setPassword("Spot2026!");
+        basicDataSource.setUsername("root");
+        basicDataSource.setPassword("M@rilyn2008");
 
         dataSource = basicDataSource;
 

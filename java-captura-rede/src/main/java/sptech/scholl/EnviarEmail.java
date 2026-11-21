@@ -1,4 +1,3 @@
-
 package sptech.scholl;
 
 import jakarta.mail.Message;
@@ -12,9 +11,7 @@ import jakarta.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class EnviarEmail {
-
-    private static final String EMAIL_SPOT =
-            "spot.systemmonitoring@gmail.com";
+    private static final String EMAIL_SPOT = "spot.systemmonitoring@gmail.com";
 
     public static void enviarAlertaRede(
             String destinatario,
@@ -25,15 +22,14 @@ public class EnviarEmail {
             String estadoAtual,
             String dataHora
     ) throws Exception {
-
-        // 1. Recuperar a senha de app
+        //Recuperar a senha de app
         String senha = System.getenv("SPOT_EMAIL_SENHA");
 
         if (senha == null || senha.isEmpty()) {
             throw new Exception("Senha de app não configurada!");
         }
 
-        // 2. Configurar o servidor SMTP
+        //Configurar o servidor SMTP
         Properties propriedades = new Properties();
 
         propriedades.put("mail.smtp.host", "smtp.gmail.com");
@@ -43,22 +39,15 @@ public class EnviarEmail {
         propriedades.put("mail.smtp.starttls.required", "true");
 
         // 3. Configurar autenticação
-        Session sessao = Session.getInstance(
-                propriedades,
-                new Authenticator() {
-                    @Override
-                    protected PasswordAuthentication
-                    getPasswordAuthentication() {
-
-                        return new PasswordAuthentication(
-                                EMAIL_SPOT,
-                                senha
-                        );
-                    }
-                }
+        Session sessao = Session.getInstance(propriedades, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(EMAIL_SPOT, senha);
+            }
+        }
         );
 
-        // 4. Definir o assunto do e-mail
+        //assunto do e-mail
         String assunto;
 
         if (estadoAtual.equals("ATENCAO")) {
@@ -69,14 +58,14 @@ public class EnviarEmail {
             assunto = "SPOT | NORMALIZAÇÃO: Uso de Rede";
         }
 
-        // 5. Montar o conteúdo do e-mail
+        //Montar o conteúdo do e-mail
         String conteudo =
                 "Olá!\n\n" +
                         "O sistema SPOT identificou uma mudança no estado " +
-                        "de monitoramento do servidor.\n\n" +
+                        "de monitoramento do servidor.\n" +
 
-                        "Servidor: " + servidor + "\n" +
-                        "Componente: Uso de Rede\n" +
+                        "Servidor: " + servidor + "\n\n" +
+                        "Componente: Uso de REDE\n" +
                         "Tráfego atual: " + trafego + " MB/s\n" +
                         "Limite configurado: " + limite + " MB/s\n" +
                         "Estado anterior: " + estadoAnterior + "\n" +
@@ -84,47 +73,30 @@ public class EnviarEmail {
                         "Data e horário: " + dataHora + "\n\n";
 
         if (estadoAtual.equals("ATENCAO")) {
-
-            conteudo +=
-                    "ATENÇÃO! O tráfego de rede está próximo " +
-                            "do limite configurado.\n" +
-                            "Recomendamos acompanhar o comportamento do servidor.";
+            conteudo += "ATENÇÃO! O tráfego de rede está próximo do limite configurado.\n" +
+                    "Recomendamos acompanhar o comportamento do servidor.";
 
         } else if (estadoAtual.equals("CRITICO")) {
-
-            conteudo +=
-                    "ALERTA CRÍTICO! O tráfego de rede atingiu " +
-                            "ou ultrapassou o limite configurado.\n" +
-                            "Recomendamos verificar imediatamente o servidor.";
+            conteudo +="ALERTA CRÍTICO! O tráfego de rede atingiu ou ultrapassou o limite configurado.\n" +
+                    "Recomendamos verificar imediatamente o servidor.";
 
         } else {
-
-            conteudo +=
-                    "NORMALIZAÇÃO! O tráfego de rede voltou " +
-                            "a uma condição normal.\n" +
-                            "O monitoramento continua ativo.";
+            conteudo += "NORMALIZAÇÃO! O tráfego de rede voltou a uma condição normal.\n" +
+                    "O monitoramento continua ativo.";
         }
 
-        conteudo +=
-                "\n\nEsta é uma notificação automática do sistema SPOT.";
+        conteudo += "\n\nEsta é uma notificação automática do sistema SPOT.";
 
-        // 6. Preparar a mensagem
+        //Preparar a mensagem
         MimeMessage email = new MimeMessage(sessao);
 
         email.setFrom(new InternetAddress(EMAIL_SPOT));
-
-        email.setRecipients(
-                Message.RecipientType.TO,
-                InternetAddress.parse(destinatario)
-        );
-
+        email.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destinatario));
         email.setSubject(assunto, "UTF-8");
         email.setText(conteudo, "UTF-8");
 
-        // 7. Enviar o e-mail
+        //Enviar o e-mail
         Transport.send(email);
-
-        System.out.println("E-mail de " + estadoAtual +
-                " enviado com sucesso!");
+        System.out.println("E-mail de " + estadoAtual + " enviado com sucesso!");
     }
 }

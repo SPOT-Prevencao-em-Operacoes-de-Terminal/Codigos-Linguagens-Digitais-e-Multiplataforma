@@ -32,4 +32,6 @@ public class Rede {
     public void setBytesEnviados(Long bytesEnviados) {
         this.bytesEnviados = bytesEnviados;
     }
+
+
 }

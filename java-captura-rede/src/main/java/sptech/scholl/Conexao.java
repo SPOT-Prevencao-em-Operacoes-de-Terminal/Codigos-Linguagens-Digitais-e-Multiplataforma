@@ -8,8 +8,8 @@ public class Conexao {
     public Conexao() {
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setUrl("jdbc:mysql://localhost:3306/spot_bd");// o host e o banco!
-        basicDataSource.setUsername("root");
-        basicDataSource.setPassword("M@rilyn2008");
+        basicDataSource.setUsername("user_SPOT");
+        basicDataSource.setPassword("senha");
 
         dataSource = basicDataSource;
 
